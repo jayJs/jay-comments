@@ -8,6 +8,8 @@ var express = require('express')
   , config = require(__dirname + '/config')
   , Jay = require('jay-npm')
   , J = Jay
+  , io1 = require('socket.io')
+  , io = io1.listen(server)
   , port = process.env.PORT || config.app.port;
 
 app.configure(function() {
@@ -22,6 +24,43 @@ app.configure(function() {
   app.use(express.static(__dirname + '/public', { maxAge: hourMs }));
   app.use(express.directory(__dirname + '/public'));
   app.use(express.favicon(__dirname + '/public/favicon.ico'));
+});
+/*
+io.enable('browser client minification');  // send minified client
+io.enable('browser client etag');          // apply etag caching logic based on version number
+io.enable('browser client gzip');          // gzip the file
+io.set('log level', 1);                    // reduce logging
+*/
+
+var socket = io1({
+  transports: [
+    'websocket',
+    'flashsocket',
+    'htmlfile',
+    'xhr-polling',
+    'jsonp-polling',
+    'polling'
+  ],
+  enable: [
+    'browser client minification',
+    'browser client etag',
+    'browser client gzip'
+  ]
+});
+
+// socket
+io.sockets.on('connection', function (socket) {
+
+  console.log('a user connected');
+  socket.emit('getUp');
+
+  socket.on('chat', function (data) {
+      // if the data doesn't know the room, ask from usernames
+      //console.log("lala");
+      //console.log(data);
+      io.emit('chat', data);
+  });
+
 });
 
 app.post('/auth/fb', function(req, res) {

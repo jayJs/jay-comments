@@ -49,9 +49,16 @@ $(document).ready(function () {
   // CONTROLLERS
   // Controller, "/"
   function frontPageFunction() {
-    //cl("front apge");
 
     $("#comments").html(loader);
+
+    socket.on('getUp', function () {
+        //cl("got getUp")
+    });
+
+    socket.on('commenting', function (data) {
+      $("#comments").append(data.comment + "<br />");
+    });
 
     J.query("Comments", 20, "relatedId", 'demo', 'createdAt').then(function (data) {
       if (data.error === "No such post") {
@@ -75,16 +82,23 @@ $(document).ready(function () {
 
       var commentText = $("#commentText").val();
       $("#commentText").val('');
-      $("#comments").append(commentText + "<br />");
+      //$("#comments").append(commentText + "<br />");
+
+      socket.emit('commenting', { comment: commentText});
 
       var comment = new FormData();
       comment.append("comment", commentText);
       comment.append("user", '0');
       comment.append('relatedId', 'demo');
 
+      //socket.broadcast.emit('commentText');
+      //socket.broadcast.emit('hi');
+      //io.sockets.in('demo1').emit('commenting', { comment: commentText});
+
       J.post("Comments", comment).then(function (response) {
         // currently we do not deal with that yet.
       });
+
     });
   }
 

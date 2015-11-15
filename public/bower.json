@@ -26,7 +26,8 @@
     "hasher": "~1.2.0",
     "signals": "~1.0.0",
     "trumbowyg": "~1.1.7",
-    "jay": "1.0.0-beta.11"
+    "jay": "1.0.0-beta.11",
+    "socket.io-client": "~1.3.7"
   },
   "devDependencies": {}
 }
