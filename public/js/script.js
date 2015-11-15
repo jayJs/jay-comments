@@ -47,6 +47,8 @@ $(document).ready(function () {
   // CONTROLLERS
   // Controller, "/"
   function frontPageFunction() {
+    cl("front apge")
+    /*
     J.get("Posts", 20).then(function (data) {
       if (data.error === "No such post") {
         $("#e404").show();
@@ -57,7 +59,7 @@ $(document).ready(function () {
           $("#frontPage").append('<h3><a href="#/p/' + data[i].objectId + '">' + data[i].title + '</a></h3>');
         }
       }
-    });
+    }); */
   }
 
 });
