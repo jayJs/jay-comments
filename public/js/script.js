@@ -30,7 +30,6 @@ $(document).ready(function () {
   var frontPageView = function () {
     clearApp();
     $("#frontPage").show('fadeIn');
-    $("#info").show();
     frontPageFunction();
   };
 
