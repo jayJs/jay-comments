@@ -3,6 +3,6 @@
 **/.DS_Store
 
 // ignore config file
-config.js
+// config.js
 
 /node_modules
