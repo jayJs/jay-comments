@@ -3,8 +3,7 @@
 **/.DS_Store
 
 // ignore config files
-config.js
-process.env
+//config.js
 
 // ignore well, node_nodules
 /node_modules
