@@ -2,7 +2,9 @@
 .DS_Store
 **/.DS_Store
 
-// ignore config file
+// ignore config files
 // config.js
+local.env
 
+// ignore well, node_nodules
 /node_modules
