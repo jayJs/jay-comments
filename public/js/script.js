@@ -50,6 +50,8 @@ $(document).ready(function () {
   // Controller, "/"
   function frontPageFunction() {
 
+    //$("#comments").commentizzze('ijur89');
+
     $("#comments").html(loader);
 
     socket.on('getUp', function () {
@@ -60,7 +62,7 @@ $(document).ready(function () {
       $("#comments").append(data.comment + "<br />");
     });
 
-    J.query("Comments", 20, "relatedId", 'demo', 'createdAt').then(function (data) {
+    J.query("Comments", 20, "relatedId", 'demo', '-createdAt').then(function (data) {
       if (data.error === "No such post") {
         // no comments yet;
         $("#comments").empty();
@@ -70,7 +72,7 @@ $(document).ready(function () {
         $("#comments").empty();
         for (i = 0; i < data.length; i++) {
           if (data[i].comment) {
-            $("#comments").append(data[i].comment + "<br />");
+            $("#comments").prepend(data[i].comment + "<br />");
           }
         }
       }
@@ -82,7 +84,6 @@ $(document).ready(function () {
 
       var commentText = $("#commentText").val();
       $("#commentText").val('');
-      //$("#comments").append(commentText + "<br />");
 
       socket.emit('commenting', { comment: commentText});
 
@@ -90,10 +91,6 @@ $(document).ready(function () {
       comment.append("comment", commentText);
       comment.append("user", '0');
       comment.append('relatedId', 'demo');
-
-      //socket.broadcast.emit('commentText');
-      //socket.broadcast.emit('hi');
-      //io.sockets.in('demo1').emit('commenting', { comment: commentText});
 
       J.post("Comments", comment).then(function (response) {
         // currently we do not deal with that yet.

@@ -13,11 +13,11 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <script src="b/socket.io-client/socket.io.js"></script>
     <script>
-    if (location.host === "jay-comments.herokuapp.com") {
+    //if (location.host === "jay-comments.herokuapp.com") {
       var socket = io("http://jay-comments.herokuapp.com");
-    } else {
-      var socket = io("http://localhost:5000");
-    }
+    //} else {
+    //  var socket = io("http://localhost:5000");
+    //}
       //('http://127.0.0.1:3001', {'max reconnection attempts': 3});
     </script>
   </head>
@@ -36,9 +36,9 @@
     <div id="app" class="hidden container">
 
       <div id="frontPage" class="hidden">
-        <h2>A simple commenting system based on NodeJs, (soon: Socket.io), Parse.com, jQuery & JayJs</h2>
+        <h2>A simple commenting system based on NodeJs, Socket.io, Parse.com, jQuery & JayJs</h2>
         <div class="row">
-          <div class='col-md-6 col-xs-6'>
+          <div class='col-md-6 col-xs-6' style="padding-bottom: 20px;">
             <br />
             <div id='comments'>
 
@@ -51,14 +51,15 @@
           <div class='col-md-6 col-xs-6'>
             <h4>Status</h4>
             Early prototype<br />
+            <a href="http://jay-comments.herokuapp.com/">Demo</a><br />
             20 last comments are loaded on page load.<br />
             Comments are saved & displayed upon enter.<br />
             <h4>Front end:</h4>
             jQuery & <a href="https://github.com/jayJs/jay">Jay</a><br />
             <h4>Back end:</h4>
             NodeJs, Express, Parse.com and <a href="https://github.com/jayJs/jay-npm">Jay-npm</a><br />
-            <h4>Missing:</h4>
-            Make Socket.io send comments to different forms (I think it currently sends to one channel only).<br />
+            <h4>Missing, but planned soon:</h4>
+            Make Socket.io send comments to different forms<br />
           </div>
         </div>
       </div>
