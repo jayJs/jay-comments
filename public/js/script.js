@@ -4,7 +4,7 @@
 /*jslint regexp: true */
 /*jslint vars: true */
 /*browser: true */
-/*global window, location, console, document, $, J, frontPageFunction, addPostFunction, onePostFunction, editPostFunction, crossroads, a, FB */
+/*global window, location, console, document, FormData, $, J, frontPageFunction, addPostFunction, onePostFunction, editPostFunction, crossroads, a, FB */
 
 $(document).ready(function () {
   "use strict";
@@ -30,6 +30,7 @@ $(document).ready(function () {
   var frontPageView = function () {
     clearApp();
     $("#frontPage").show('fadeIn');
+    $("#info").show();
     frontPageFunction();
   };
 
@@ -53,18 +54,16 @@ $(document).ready(function () {
 
     $("#comments").html(loader);
 
-    J.query("Comments", 50, "relatedId", 'demo', 'createdAt').then(function (data) {
+    J.query("Comments", 20, "relatedId", 'demo', 'createdAt').then(function (data) {
       if (data.error === "No such post") {
         // no comments yet;
         $("#comments").empty();
         $("#comments").append('<span style="color: #999;">No comments yet</span>');
       } else {
-
         var i;
         $("#comments").empty();
-
         for (i = 0; i < data.length; i++) {
-          if(data[i].comment) {
+          if (data[i].comment) {
             $("#comments").append(data[i].comment + "<br />");
           }
         }
@@ -72,35 +71,22 @@ $(document).ready(function () {
     });
 
     $("#commentsForm").unbind("submit").on("submit", function (event) {
+
       event.preventDefault();
+
       var commentText = $("#commentText").val();
       $("#commentText").val('');
       $("#comments").append(commentText + "<br />");
 
-      var comment = new FormData;
+      var comment = new FormData();
       comment.append("comment", commentText);
       comment.append("user", '0');
       comment.append('relatedId', 'demo');
 
       J.post("Comments", comment).then(function (response) {
-        cl(response);
+        // currently we do not deal with that yet.
       });
     });
-
-
-
-    /*
-    J.get("Posts", 20).then(function (data) {
-      if (data.error === "No such post") {
-        $("#e404").show();
-      } else {
-        $("#frontPage").empty();
-        var i;
-        for (i = 0; i < data.length; i++) {
-          $("#frontPage").append('<h3><a href="#/p/' + data[i].objectId + '">' + data[i].title + '</a></h3>');
-        }
-      }
-    }); */
   }
 
 });

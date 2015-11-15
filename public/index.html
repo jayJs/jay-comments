@@ -27,15 +27,31 @@
     <div id="app" class="hidden container">
 
       <div id="frontPage" class="hidden">
-        <h2>A simple commenting system based on NodeJs, (soon: SocketJs), Parse.com & JayJs</h2>
-        <br />
-        <div id='comments'>
+        <h2>A simple commenting system based on NodeJs, (soon: SocketJs), Parse.com, jQuery & JayJs</h2>
+        <div class="row">
+          <div class='col-md-6 col-xs-6'>
+            <br />
+            <div id='comments'>
 
+            </div>
+            <form id="commentsForm">
+              <input id='commentText' type='text'>
+              <input id='submitComment' value="Save" type='submit'>
+            </form>
+          </div>
+          <div class='col-md-6 col-xs-6'>
+            <h4>Status</h4>
+            Early prototype<br />
+            20 last comments are loaded on page load.<br />
+            Comments are saved & displayed upon enter.<br />
+            <h4>Front end:</h4>
+            jQuery & <a href="https://github.com/jayJs/jay">Jay</a><br />
+            <h4>Back end:</h4>
+            NodeJs, Express, Parse.com and <a href="https://github.com/jayJs/jay-npm">Jay-npm</a><br />
+            <h4>Missing:</h4>
+            Socket.io integration for real time.<br />
+          </div>
         </div>
-        <form id="commentsForm">
-          <input id='commentText' type='text'>
-          <input id='submitComment' value="Save" type='submit'>
-        </form>
       </div>
 
       <div id="e404" class="hidden">
