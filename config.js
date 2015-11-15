@@ -14,7 +14,7 @@ config.facebook.clientSecret = ''
 // Parse.com credidentials for Kaiseki
 config.kaiseki = {};
 config.kaiseki.appId = process.env.apiId;
-config.kaiseki.restApiKey = process.apiKey.;
+config.kaiseki.restApiKey = process.apiKey;
 
 // JWT(JSON Web Token) encode and decode module settings
 config.jwtSimple = {};
