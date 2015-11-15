@@ -54,11 +54,11 @@ io.sockets.on('connection', function (socket) {
   console.log('a user connected');
   socket.emit('getUp');
 
-  socket.on('chat', function (data) {
+  socket.on('commenting', function (data) {
       // if the data doesn't know the room, ask from usernames
       //console.log("lala");
       //console.log(data);
-      io.emit('chat', data);
+      io.emit('commenting', data);
   });
 
 });
