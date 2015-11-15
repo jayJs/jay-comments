@@ -16,7 +16,7 @@ Back end:
 #NodeJs, Express, Parse.com and Jay-npm  
 
 #Missing:    
-Socket.io integration for real time.   
+Make Socket.io send comments to different forms (I think it currently sends to one channel only.   
 
 This is based on [Node-Jay](https://github.com/jayJs/jay) boilerplate.  
 Find instructions for running the server from there.
