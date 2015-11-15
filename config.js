@@ -13,8 +13,8 @@ config.facebook.clientSecret = ''
 
 // Parse.com credidentials for Kaiseki
 config.kaiseki = {};
-config.kaiseki.appId = "Way17JR7MUB0ln0m98Qn5fVAlIG7Z0hXjgy54cgk";
-config.kaiseki.restApiKey = "MnDcpyijVxArzJgqn4tvv7QHZMn6lTBKrq2tAUJX";
+config.kaiseki.appId = process.env.apiId;
+config.kaiseki.restApiKey = process.apiKey;
 
 // JWT(JSON Web Token) encode and decode module settings
 config.jwtSimple = {};
