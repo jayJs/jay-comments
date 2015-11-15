@@ -38,7 +38,7 @@ app.get('/api/j', function(req, res){
 });
 
 // Post content
-app.post('/api/j', J.ensureAuthenticated, function(req, res){
+app.post('/api/j', function(req, res){
   Jay.post(req, res, config, function(data){
     res.jsonp(data);
   })

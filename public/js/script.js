@@ -10,13 +10,15 @@ $(document).ready(function () {
   "use strict";
 
   // connect-livereload via Gulp autorefreshes the site.
-  if (location.href === "localhost:5000") {
+  if (location.host === "localhost:5000") {
     $("body").append('<script src="http://localhost:35729/livereload.js?snipver=1"></script>');
   }
 
   // hide loadin + show app
   $("#loading").hide();
   $("#app").show("fadeIn");
+
+  var loader = '<span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>';
 
   function clearApp() {
     $("#app>div").hide();
@@ -47,7 +49,46 @@ $(document).ready(function () {
   // CONTROLLERS
   // Controller, "/"
   function frontPageFunction() {
-    cl("front apge")
+    //cl("front apge");
+
+    $("#comments").html(loader);
+
+    J.query("Comments", 50, "relatedId", 'demo', 'createdAt').then(function (data) {
+      if (data.error === "No such post") {
+        // no comments yet;
+        $("#comments").empty();
+        $("#comments").append('<span style="color: #999;">No comments yet</span>');
+      } else {
+
+        var i;
+        $("#comments").empty();
+
+        for (i = 0; i < data.length; i++) {
+          if(data[i].comment) {
+            $("#comments").append(data[i].comment + "<br />");
+          }
+        }
+      }
+    });
+
+    $("#commentsForm").unbind("submit").on("submit", function (event) {
+      event.preventDefault();
+      var commentText = $("#commentText").val();
+      $("#commentText").val('');
+      $("#comments").append(commentText + "<br />");
+
+      var comment = new FormData;
+      comment.append("comment", commentText);
+      comment.append("user", '0');
+      comment.append('relatedId', 'demo');
+
+      J.post("Comments", comment).then(function (response) {
+        cl(response);
+      });
+    });
+
+
+
     /*
     J.get("Posts", 20).then(function (data) {
       if (data.error === "No such post") {
